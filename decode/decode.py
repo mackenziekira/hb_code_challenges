@@ -27,6 +27,18 @@ Longer patterns should work::
 def decode(s):
     """Decode a string."""
 
+    res = ""
+    i = 0
+    lng = len(s)
+    while i < lng:
+        if isinstance(int(s[i]), int):
+            index = i + int(s[i]) + 1
+            res = res + s[index]
+            i = index + 1
+        else:
+            i += 1
+    return res
+
 if __name__ == '__main__':
     import doctest
     if doctest.testmod().failed == 0:

@@ -72,6 +72,8 @@ class Node:
     def is_valid(self):
         """Is this tree a valid BST?"""
 
+        
+
 if __name__ == "__main__":
     import doctest
 
