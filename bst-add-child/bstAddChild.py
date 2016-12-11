@@ -27,8 +27,9 @@ class Node(object):
         self.right = right
         self.data = data
 
-    def add_child(self):
-        
+    def add_child(self, new):
+        if new > self.data:
+
 
 if __name__ == "__main__":
     import doctest
