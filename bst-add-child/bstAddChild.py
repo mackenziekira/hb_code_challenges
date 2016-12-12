@@ -9,11 +9,11 @@
     0
 
     >>> t.add_child(4)
-    >>> t.right.left.left.data
+    >>> t.right.data
     4
 
     >>> t.add_child(6)
-    >>> t.right.right.left.data
+    >>> t.right.right.data
     6
 """
 
@@ -27,8 +27,24 @@ class Node(object):
         self.right = right
         self.data = data
 
-    def add_child(self, new):
-        if new > self.data:
+    def add_child(self, x):
+        new = Node(x)
+
+        def rec(self):
+            if new.data >= self.data and self.right is None:
+                self.right = new
+            elif new.data <= self.data and self.left is None:
+                self.left = new
+
+            elif new.data >= self.data and new.data < self.right.data:
+                self.right, new.right = new, self.right
+            elif new.data <= self.data and new.data > self.left.data:
+                add_child(self.left, new)
+            elif new.data > self.data:
+                rec(self.right)
+            elif new.data < self.data:
+                rec(self.left)
+        rec(self)
 
 
 if __name__ == "__main__":
