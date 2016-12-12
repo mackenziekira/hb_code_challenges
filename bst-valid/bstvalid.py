@@ -71,8 +71,28 @@ class Node:
 
     def is_valid(self):
         """Is this tree a valid BST?"""
+        path = []
+        
+        def rec(self, path):
 
         
+
+            if not self.left:
+                path.append(self.data)
+            else:
+                rec(self.left, path)
+                path.append(self.data)
+
+            
+            if self.right:
+                rec(self.right, path)
+            
+            
+        rec(self, path)
+
+        return sorted(path) == path
+
+
 
 if __name__ == "__main__":
     import doctest
