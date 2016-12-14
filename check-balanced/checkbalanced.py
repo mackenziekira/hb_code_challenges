@@ -102,15 +102,15 @@ class BinaryNode(object):
 
             right = rec(self.right)
 
-            if not left:
+            if left is None:
                 return None
 
-            if not right:
+            if right is None:
                 return None
 
             if abs(left - right) > 1:
                 return None
-            
+
             return max(left, right) + 1
 
         return rec(self) is not None
