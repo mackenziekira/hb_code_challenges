@@ -92,13 +92,29 @@ class BinaryNode(object):
     def is_balanced(self):
         """Is the tree at this node balanced?"""
 
-        if not self.left:
-            print self
-        elif not self.right:
-            print self
-        else:
-            l = self.left.is_balanced()
-            r = self.right.is_balanced()
+        def rec(self):
+
+
+            if not self:
+                return 0
+
+            left = rec(self.left)
+
+            right = rec(self.right)
+
+            if not left:
+                return None
+
+            if not right:
+                return None
+
+            if abs(left - right) > 1:
+                return None
+            
+            return max(left, right) + 1
+
+        return rec(self) is not None
+
 
 
 

@@ -75,17 +75,20 @@ class Node:
         
         def rec(self, path):
 
-        
-
-            if not self.left:
-                path.append(self.data)
-            else:
+            if self != None:
                 rec(self.left, path)
                 path.append(self.data)
+                rec(self.right, path)
+
+            # if not self.left:
+            #     path.append(self.data)
+            # else:
+            #     rec(self.left, path)
+            #     path.append(self.data)
 
             
-            if self.right:
-                rec(self.right, path)
+            # if self.right:
+            #     rec(self.right, path)
             
             
         rec(self, path)
