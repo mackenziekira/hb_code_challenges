@@ -53,13 +53,11 @@ class Node(object):
         include *everyone* under them, not just people who directly report to
         them.
         """
-        if not self:
-            return 0
 
-        total = 0
+        total = len(self.children)
 
         for child in self.children:
-            total = child.count_employees()
+            total += child.count_employees()
 
         return total 
 
