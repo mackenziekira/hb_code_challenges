@@ -22,7 +22,7 @@ def primes(count):
     i = 2
 
     while lng < count:
-        for num in xrange(2, i):
+        for num in xrange(2, sqrt(i)):
             if i % num == 0:
                 i += 1
                 break
