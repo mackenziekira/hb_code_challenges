@@ -22,15 +22,20 @@ def primes(count):
     i = 2
 
     while lng < count:
-        for num in xrange(2, sqrt(i)):
-            if i % num == 0:
-                i += 1
-                break
-        result.append(i)
+        if is_prime(i):
+            result.append(i)
         lng = len(result)
         i += 1
 
     return result
+
+def is_prime(num):
+    # end = int(sqrt(num))
+    # print end
+    for x in xrange(2, num):
+        if num % x == 0:
+            return False
+    return True
 
 
 if __name__ == '__main__':
