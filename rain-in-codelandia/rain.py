@@ -83,7 +83,7 @@ def rain(buildings):
         elif current < next and not dam_indicies:
             print 'c'
             continue
-        elif current < next and next > buildings[dam_indicies[-1]]:
+        elif current < next and next > buildings[dam_indicies[-1]] and len(dam_indicies) > 1:
             print 'd'
             dam_indicies.pop()
             dam_indicies.append(index + 1)
