@@ -65,6 +65,37 @@ Should also work with floats::
 def rain(buildings):
     """How much rain is trapped in Codelandia?"""
 
+    if not buildings:
+        return 0
+
+    dam_indicies = []
+
+    for index in xrange(0, len(buildings) - 1):
+        current = buildings[index]
+        next = buildings[index + 1]
+
+        if current > next and not dam_indicies:
+            print 'a'
+            dam_indicies.append(index)
+        elif current > next and current >= buildings[dam_indicies[-1]] and index != dam_indicies[-1]:
+            print 'b'
+            dam_indicies.append(index)
+        elif current < next and not dam_indicies:
+            print 'c'
+            continue
+        elif current < next and next > buildings[dam_indicies[-1]]:
+            print 'd'
+            dam_indicies.pop()
+            dam_indicies.append(index + 1)
+        elif current < next:
+            print 'e'
+            dam_indicies.append(index + 1)
+
+
+    print dam_indicies
+
+
+
 if __name__ == '__main__':
     import doctest
     if doctest.testmod().failed == 0:
