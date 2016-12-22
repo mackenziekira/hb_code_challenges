@@ -94,14 +94,12 @@ def find_dams(buildings):
         current_building = buildings[building_index]
         next_building = buildings[building_index + 1]
 
-        if current_building > next_building:
-            if not dams:
-                dams.append(building_index)
-            elif len(dams) > 1 and current_building > buildings[dams[-1]]:
+        if current_building > next_building and not dams:
+            dams.append(building_index)
+        elif current_building >= next_building and current_building > buildings[building_index - 1]:
+            if len(dams) > 1 and current_building > buildings[dams[-1]]:
                 dams.pop()
-                dams.append(building_index)
-            elif current_building > buildings[building_index - 1]:
-                dams.append(building_index)
+            dams.append(building_index)
         elif next_building > current_building: 
             if building_index == at_end:
                 if len(dams) > 1 and next_building > buildings[dams[-1]]:
