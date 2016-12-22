@@ -70,29 +70,38 @@ def rain(buildings):
 
     dam_indicies = []
 
-    for index in xrange(0, len(buildings) - 1):
+    lng = len(buildings)
+
+    for index in xrange(0, lng - 1):
         current = buildings[index]
         next = buildings[index + 1]
 
         if current > next and not dam_indicies:
-            print 'a'
             dam_indicies.append(index)
         elif current > next and current >= buildings[dam_indicies[-1]] and index != dam_indicies[-1]:
-            print 'b'
             dam_indicies.append(index)
         elif current < next and not dam_indicies:
-            print 'c'
             continue
         elif current < next and next > buildings[dam_indicies[-1]] and len(dam_indicies) > 1:
-            print 'd'
             dam_indicies.pop()
             dam_indicies.append(index + 1)
         elif current < next:
-            print 'e'
             dam_indicies.append(index + 1)
 
 
-    print dam_indicies
+    levee1 = 0
+    levee2 = 1
+    lng = len(dam_indicies)
+    total_water = 0
+
+    while levee2 < lng:
+        lowest_levee = min(buildings[dam_indicies[levee1]], buildings[dam_indicies[levee2]])
+        for building_index in xrange(dam_indicies[levee1] + 1, dam_indicies[levee2]):
+            total_water += lowest_levee - buildings[building_index]
+        levee1 += 1
+        levee2 += 1
+
+    return total_water
 
 
 
