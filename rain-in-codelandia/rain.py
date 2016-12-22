@@ -100,11 +100,10 @@ def find_dams(buildings):
             if len(dams) > 1 and current_building > buildings[dams[-1]]:
                 dams.pop()
             dams.append(building_index)
-        elif next_building > current_building: 
-            if building_index == at_end:
-                if len(dams) > 1 and next_building > buildings[dams[-1]]:
-                    dams.pop()
-                dams.append(building_index + 1)
+        elif next_building > current_building and building_index == at_end:
+            if len(dams) > 1 and next_building > buildings[dams[-1]]:
+                dams.pop()
+            dams.append(building_index + 1)
 
     return dams
 
