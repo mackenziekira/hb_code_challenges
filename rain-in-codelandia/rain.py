@@ -68,6 +68,23 @@ def rain(buildings):
     if not buildings:
         return 0
 
+    dams = find_dams(buildings)
+ 
+    dam_1 = 0
+    dam_2 = 1
+    num_dams = len(dams)
+    total_water = 0
+
+    while dam_2 < num_dams:
+        lowest_dam = min(buildings[dams[dam_1]], buildings[dams[dam_2]])
+        for building_index in xrange(dams[dam_1] + 1, dams[dam_2]):
+            total_water += lowest_dam - buildings[building_index]
+        dam_1 += 1
+        dam_2 += 1
+
+    return total_water
+
+def find_dams(buildings):
     dams = []
 
     skyline = len(buildings) - 1
@@ -90,22 +107,8 @@ def rain(buildings):
                 if len(dams) > 1 and next_building > buildings[dams[-1]]:
                     dams.pop()
                 dams.append(building_index + 1)
- 
 
-
-    levee_1 = 0
-    levee_2 = 1
-    num_dams = len(dams)
-    total_water = 0
-
-    while levee_2 < num_dams:
-        lowest_levee = min(buildings[dams[levee_1]], buildings[dams[levee_2]])
-        for building_index in xrange(dams[levee_1] + 1, dams[levee_2]):
-            total_water += lowest_levee - buildings[building_index]
-        levee_1 += 1
-        levee_2 += 1
-
-    return total_water
+    return dams
 
 
 
