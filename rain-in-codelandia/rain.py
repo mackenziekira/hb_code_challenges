@@ -68,38 +68,42 @@ def rain(buildings):
     if not buildings:
         return 0
 
-    dam_indicies = []
+    dams = []
 
-    lng = len(buildings)
+    skyline = len(buildings) - 1
+    at_end = skyline - 1
 
-    for index in xrange(0, lng - 1):
-        current = buildings[index]
-        next = buildings[index + 1]
+    for building_index in xrange(skyline):
+        current_building = buildings[building_index]
+        next_building = buildings[building_index + 1]
 
-        if current > next and not dam_indicies:
-            dam_indicies.append(index)
-        elif current > next and current >= buildings[dam_indicies[-1]] and index != dam_indicies[-1]:
-            dam_indicies.append(index)
-        elif current < next and not dam_indicies:
-            continue
-        elif current < next and next > buildings[dam_indicies[-1]] and len(dam_indicies) > 1:
-            dam_indicies.pop()
-            dam_indicies.append(index + 1)
-        elif current < next:
-            dam_indicies.append(index + 1)
+        if current_building > next_building:
+            if not dams:
+                dams.append(building_index)
+            elif len(dams) > 1 and current_building > buildings[dams[-1]]:
+                dams.pop()
+                dams.append(building_index)
+            elif current_building > buildings[building_index - 1]:
+                dams.append(building_index)
+        elif next_building > current_building: 
+            if building_index == at_end:
+                if len(dams) > 1 and next_building > buildings[dams[-1]]:
+                    dams.pop()
+                dams.append(building_index + 1)
+ 
 
 
-    levee1 = 0
-    levee2 = 1
-    lng = len(dam_indicies)
+    levee_1 = 0
+    levee_2 = 1
+    num_dams = len(dams)
     total_water = 0
 
-    while levee2 < lng:
-        lowest_levee = min(buildings[dam_indicies[levee1]], buildings[dam_indicies[levee2]])
-        for building_index in xrange(dam_indicies[levee1] + 1, dam_indicies[levee2]):
+    while levee_2 < num_dams:
+        lowest_levee = min(buildings[dams[levee_1]], buildings[dams[levee_2]])
+        for building_index in xrange(dams[levee_1] + 1, dams[levee_2]):
             total_water += lowest_levee - buildings[building_index]
-        levee1 += 1
-        levee2 += 1
+        levee_1 += 1
+        levee_2 += 1
 
     return total_water
 
