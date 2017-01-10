@@ -94,7 +94,6 @@ class BinaryNode(object):
 
         def rec(self):
 
-
             if not self:
                 return 0
 
