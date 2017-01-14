@@ -23,9 +23,10 @@ class LinkedList(object):
         """
 
         first_runner = self.head
+        print first_runner.data
         second_runner = None
         i = 0
-        while first_runner.data is not None:
+        while True:
             if i == n + 1:
                 second_runner = head
             first_runner = first_runner.next
