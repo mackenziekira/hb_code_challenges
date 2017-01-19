@@ -23,11 +23,14 @@ class LinkedList(object):
         """
 
         first_runner = self.head
-        second_runner = self.head
+        second_runner = None
         i = 0
         while first_runner:
-            if i >= n + 1:
-                second_runner = second_runner.next
+            if i >= n:
+                if not second_runner:
+                    second_runner = self.head
+                else:
+                    second_runner = second_runner.next
             first_runner = first_runner.next
             i += 1
         return second_runner
