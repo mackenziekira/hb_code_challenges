@@ -23,15 +23,13 @@ class LinkedList(object):
         """
 
         first_runner = self.head
-        print first_runner.data
-        second_runner = None
+        second_runner = self.head
         i = 0
-        while True:
-            if i == n + 1:
-                second_runner = head
-            first_runner = first_runner.next
-            if second_runner:
+        while first_runner:
+            if i >= n + 1:
                 second_runner = second_runner.next
+            first_runner = first_runner.next
+            i += 1
         return second_runner
 
 n1 = Node(4)
@@ -42,7 +40,7 @@ n1.next = n2
 n2.next = n3
 
 ll = LinkedList(n1)
-ll.nth_from_last_ll(2)
+print ll.nth_from_last_ll(2)
 
 
 if __name__ == "__main__":
