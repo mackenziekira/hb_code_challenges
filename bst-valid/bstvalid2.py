@@ -72,6 +72,20 @@ class Node:
     def is_valid(self):
         """Is this tree a valid BST?"""
 
+        def _is_valid(node, lt, gt):
+            if node is None:
+                return True
+            if lt is not None and node.data > lt:
+                return False
+            if gt is not None and node.data < gt:
+                return False
+            if not _is_valid(node.left, self.data, gt):
+                return False
+            if not _is_valid(node.right, lt, self.data):
+                return False
+            return True
+
+        return _is_valid(self, None, None)
 
 
 
