@@ -91,6 +91,20 @@ class BinaryNode(object):
 
     def is_balanced(self):
         """Is the tree at this node balanced?"""
+        def _is_balanced(node):
+            if node is None:
+                return 0
+            left_height = 1 + _is_balanced(node.left)
+            right_height = 1 + _is_balanced(node.right)
+            if not left_height:
+                return False
+            if not right_height:
+                return False
+            if abs(left_height - right_height) > 1:
+                return False
+            return max(left_height, right_height)
+
+        return not not _is_balanced(self)
 
 
 
